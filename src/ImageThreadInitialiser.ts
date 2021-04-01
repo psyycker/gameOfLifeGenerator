@@ -1,6 +1,8 @@
 import fs from "fs";
 import { Worker } from "worker_threads";
 
+// The amount of threads created. My computer has a i9, So I have much interest to keep it high.
+// For computer with 4 cores, you should get it down to 4
 const MAX_THREADS = 8;
 export default function StartImagesThreads(pixelSize: number, xSize: number, ySize: number) {
   let cptr = 0;
