@@ -14,9 +14,9 @@ function processFile(fileObj) {
     .then(() => {
       files.shift();
       if (files.length === 0) {
-        parentPort.postMessage({type: "DONE"})
+        parentPort.close();
       } else {
-        processFile(files[0])
+        processFile(files[0]);
       }
     })
 }

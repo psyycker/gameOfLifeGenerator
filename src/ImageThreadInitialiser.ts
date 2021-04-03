@@ -29,7 +29,7 @@ export default function StartImagesThreads(pixelSize: number, xSize: number, ySi
           ySize
         }
       })
-      worker.on("message", resolve)
+      worker.on("exit", resolve)
     })
   });
   return Promise.all(promises)
