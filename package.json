@@ -2,9 +2,11 @@
   "name": "game-of-life-generator",
   "version": "1.0.0",
   "description": "A program to generate a video of a game of life",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "nodemon --ignore './outputs/' ./src/index.ts",
+    "dev": "nodemon --ignore './outputs' ./src/index.ts",
+    "build": "tsc",
+    "start": "npm run build && node --max-old-space-size=8012 dist/index.js",
     "test": "jest"
   },
   "devDependencies": {
@@ -21,7 +23,16 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
   },
-  "keywords": ["game", "of", "life", "conways", "typescript", "nodejs", "javascript", "ffmpeg"],
+  "keywords": [
+    "game",
+    "of",
+    "life",
+    "conways",
+    "typescript",
+    "nodejs",
+    "javascript",
+    "ffmpeg"
+  ],
   "author": "Remy Villulles",
   "license": "MIT",
   "dependencies": {

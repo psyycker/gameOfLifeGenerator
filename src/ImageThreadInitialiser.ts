@@ -1,13 +1,11 @@
 import fs from "fs";
 import { Worker } from "worker_threads";
+import {THREADS} from "./index";
 
-// The amount of threads created. My computer has a i9, So I have much interest to keep it high.
-// For computer with 4 cores, you should get it down to 4
-const MAX_THREADS = 8;
 export default function StartImagesThreads(pixelSize: number, xSize: number, ySize: number) {
   let cptr = 0;
   const objects: {[key: string]: { file: string, index: number }[]} = {};
-  for (let i = 0; i < MAX_THREADS; i += 1) {
+  for (let i = 0; i < THREADS; i += 1) {
     objects[i] = []
   }
   const files = fs.readdirSync("outputs");
@@ -15,7 +13,7 @@ export default function StartImagesThreads(pixelSize: number, xSize: number, ySi
   fileNumbers.forEach((file) => {
     objects[cptr].push({file: `${file}.json`, index: file});
     cptr += 1;
-    if (cptr === MAX_THREADS) {
+    if (cptr === THREADS) {
       cptr = 0;
     }
   })

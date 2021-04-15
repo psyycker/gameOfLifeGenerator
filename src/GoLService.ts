@@ -18,6 +18,18 @@ export function genMap(sizeY: number, sizeX: number) {
   return map;
 }
 
+export function copyMap(map: number[][]) {
+  const newMap = [];
+  for (let y = 0; y < map.length; y += 1) {
+    const line = [];
+    for (let x = 0; x < map[y].length; x += 1) {
+      line.push(map[y][x]);
+    }
+    newMap.push(line);
+  }
+  return newMap;
+}
+
 function doX(y: number, x: number, yIndex: number, yLength: number, xLength: number, map: number[][]): number {
   let neighboursCounter = 0;
   for (let xIndex = x - 1; xIndex <= x + 1; xIndex += 1) {
@@ -62,7 +74,7 @@ export function checkRules(y: number, x: number, yLength: number, xLength: numbe
   return 0;
 }
 
-export function getNextState(mapA: number[][], mapB: number[][]) {
+export function getNextState(mapA: number[][], mapB: number[][]): {map: number[][], aliveCoordinates: string[]} {
   const yLength = mapA.length;
   const xLength = mapA[0].length;
   const aliveCoordinates: string[] = []

@@ -4,8 +4,9 @@ describe("Rules", () => {
   describe("underpopulation",  () => {
     it("should do underpopulation", () => {
       const map = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
-      const newMap = getNextState(map);
-      expect(newMap[2][2]).toBe(0);
+      const map2 = JSON.parse(JSON.stringify(map));
+      const result = getNextState(map, map2);
+      expect(result.map[2][2]).toBe(0);
     })
 
     it("should do underpopulation top left corner", () => {
@@ -15,8 +16,9 @@ describe("Rules", () => {
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0]]
-      const newMap = getNextState(map);
-      expect(newMap[0][0]).toBe(0);
+      const map2 = JSON.parse(JSON.stringify(map));
+      const result = getNextState(map, map2);
+      expect(result.map[0][0]).toBe(0);
     })
 
     it("should do underpopulation bottom left corner", () => {
@@ -26,8 +28,9 @@ describe("Rules", () => {
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
         [1, 0, 0, 0, 0]]
-      const newMap = getNextState(map);
-      expect(newMap[4][0]).toBe(0);
+      const map2 = JSON.parse(JSON.stringify(map));
+      const result = getNextState(map, map2);
+      expect(result.map[4][0]).toBe(0);
     })
 
     it("should do underpopulation top right corner", () => {
@@ -37,8 +40,9 @@ describe("Rules", () => {
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0]]
-      const newMap = getNextState(map);
-      expect(newMap[0][4]).toBe(0);
+      const map2 = JSON.parse(JSON.stringify(map));
+      const result = getNextState(map, map2);
+      expect(result.map[0][4]).toBe(0);
     })
 
     it("should do underpopulation bottom right corner", () => {
@@ -48,8 +52,9 @@ describe("Rules", () => {
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 1]]
-      const newMap = getNextState(map);
-      expect(newMap[4][4]).toBe(0);
+      const map2 = JSON.parse(JSON.stringify(map));
+      const result = getNextState(map, map2);
+      expect(result.map[4][4]).toBe(0);
     })
   });
 
@@ -62,8 +67,9 @@ describe("Rules", () => {
         [0, 0, 1, 0, 0],
         [0, 0, 0, 1, 0],
         [0, 0, 0, 0, 0]]
-      const newMap = getNextState(map);
-      expect(newMap[2][2]).toBe(1);
+      const map2 = JSON.parse(JSON.stringify(map));
+      const result = getNextState(map, map2);
+      expect(result.map[2][2]).toBe(1);
     })
 
     it("should stay alive with 3 neighbours", () => {
@@ -73,8 +79,9 @@ describe("Rules", () => {
         [0, 0, 1, 0, 0],
         [0, 0, 0, 1, 0],
         [0, 0, 0, 0, 0]]
-      const newMap = getNextState(map);
-      expect(newMap[2][2]).toBe(1);
+      const map2 = JSON.parse(JSON.stringify(map));
+      const result = getNextState(map, map2);
+      expect(result.map[2][2]).toBe(1);
     })
   });
 
@@ -87,8 +94,9 @@ describe("Rules", () => {
         [0, 0, 1, 0, 0],
         [0, 1, 0, 1, 0],
         [0, 0, 0, 0, 0]]
-      const newMap = getNextState(map);
-      expect(newMap[2][2]).toBe(0);
+      const map2 = JSON.parse(JSON.stringify(map));
+      const result = getNextState(map, map2);
+      expect(result.map[2][2]).toBe(0);
     })
   });
 
@@ -101,8 +109,9 @@ describe("Rules", () => {
         [0, 0, 0, 0, 0],
         [0, 1, 0, 1, 0],
         [0, 0, 0, 0, 0]]
-      const newMap = getNextState(map);
-      expect(newMap[2][2]).toBe(1);
+      const map2 = JSON.parse(JSON.stringify(map));
+      const result = getNextState(map, map2);
+      expect(result.map[2][2]).toBe(1);
     })
   });
 })

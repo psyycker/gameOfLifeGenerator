@@ -3,15 +3,20 @@ import Express from "express";
 const app = Express();
 // @ts-ignore
 import videoshow from "videoshow";
-import {genMap, getNextState} from "./GoLService";
+import {copyMap, genMap, getNextState} from "./GoLService";
 import fs from "fs"
 import {generateVideoFromImages} from "./ffmpegHelper";
 import StartImagesThreads from "./ImageThreadInitialiser";
+import {Server} from "http";
 
-const Y = 2000;
-const X = 2000;
+const Y = 5000;
+const X = 5000;
 const PIXEL_SIZE = 1;
-const LOOPS = 30;
+
+// The amount of threads created. My computer has a i9, So I have much interest to keep it high.
+// For computer with 4 cores, you should get it down to 4
+const LOOPS = 1000;
+export const THREADS = 4;
 
 function cleanOutputs() {
   if (fs.existsSync("outputs")) {
@@ -30,7 +35,7 @@ function init() {
     fs.mkdirSync("outputs")
   }
   let mapA = genMap(Y, X);
-  let mapB = JSON.parse(JSON.stringify(mapA));
+  let mapB = copyMap(mapA);
   return {
     mapA, mapB
   }
@@ -57,7 +62,14 @@ async function run() {
     })
 }
 
-run();
+let server: Server;
+
+run()
+  .then(() => {
+    if (server) {
+      server.close();
+    }
+  })
 
 
-app.listen(4000);
+server = app.listen(4000);

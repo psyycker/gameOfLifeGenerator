@@ -72,6 +72,10 @@
     "forceConsistentCasingInFileNames": true        /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": [
-    "outputs"
+    "outputs",
+    "babel.config.js",
+    "dist",
+    "jest.config.js",
+    "jest.config.ts"
   ]
 }
